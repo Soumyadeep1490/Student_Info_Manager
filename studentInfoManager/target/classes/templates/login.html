@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+	<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#">Student Information Manager</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/about/}">About <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/signin/}">Sign in <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/register/}">Register <span class="sr-only">(current)</span></a>
+	      </li>
+	    </ul>
+	    
+	  </div>
+	</nav>
+	<!-- Navbar ends -->
+
+	
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+				
+					<div class="card">
+					
+						<!-- Alert Message -->
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+						  	<p th:text="${session.message.content}"></p>
+						  	<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+						
+						
+						<div class="container text-center">
+							<img style="width: 80px;" th:src="@{/img/login.png}">
+						</div>
+						<h2 class="text-center">Login Here</h2>
+						
+						<form action="#" th:action="@{/user}" th:object="${user}" method="post">
+							 
+							 <!-- User Name -->
+							 <div class="form-group">
+							    <label for="userName">User Name</label>
+							    <input type="text" 
+							    name="userName" 
+							    th:field="*{userName}" 
+							    class="form-control" 
+							    id="userName" 
+							    placeholder="Enter User Name"
+							    required>
+							 </div>
+							 
+							 <!-- Password -->
+							 <div class="form-group">
+							    <label for="password">Password</label>
+							    <input type="password" 
+							    name="password" 
+							    class="form-control" 
+							    th:field="*{password}" 
+							    id="password" 
+							    placeholder="Enter Password"
+							    required>
+							 </div>
+							 
+							 <div class="container text-center">
+							 	<button type="submit" class="btn btn-success">Login</button>
+							 	<button type="reset" class="btn btn-warning">Reset</button>
+							 </div>
+							
+						</form>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

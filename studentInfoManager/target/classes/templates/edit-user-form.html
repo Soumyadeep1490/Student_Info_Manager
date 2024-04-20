@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+	<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#">Student Information Manager</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link"><img style="width: 20px;" th:src="@{/img/rotation.png}"> <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link">Update User Form <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/signin/}">Log out <span class="sr-only">(current)</span></a>
+	      </li>
+	    </ul>
+	    
+	  </div>
+	</nav>
+	<!-- Navbar ends -->
+	
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+				
+					<div class="card">
+					
+						<div class="container text-center">
+							<img style="width: 80px;" th:src="@{/img/rotation.png}">
+						</div>
+						<h2 class="text-center">Update Here</h2>
+						
+						<form novalidate action="#" th:action="@{/do_edit}" method="post" th:object="${user}">
+							
+							<!-- ID -->
+							 <div class="form-group">
+							    <label for="id">User Id</label>
+							    <input type="number" 
+							    name="id" 
+							    class="form-control " 
+							    th:classappend="${#fields.hasErrors('id') ? 'is-invalid' : ''}" 
+							    id="id" 
+							    th:field="*{id}" 
+							    placeholder="Enter User Name"
+							    th:value="${user.id}"
+							    readonly>
+							    <div class="invalid-feedback">
+							    	User Id Required
+							    </div>
+							 </div>
+							
+							<!-- First Name -->
+							 <div class="form-group">
+							    <label for="firstName">First Name</label>
+							    <input type="text" 
+							    name="firstName" 
+							    class="form-control " 
+							    th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid' : ''}" 
+							    id="firstName" 
+							    th:field="*{firstName}" 
+							    placeholder="Enter First Name"
+							    th:value="${user.firstName}" 
+							    required>
+							    <div class="invalid-feedback" th:each="e : ${#fields.errors('firstName')}" th:text="${e}">
+							    	First Name Required
+							    </div>
+							 </div>
+							 
+							 <!-- Last Name -->
+							 <div class="form-group">
+							    <label for="lastName">Last Name</label>
+							    <input type="text" 
+							    name="lastName" 
+							    class="form-control " 
+							    th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid' : ''}" 
+							    id="lastName" 
+							    th:field="*{lastName}" 
+							    placeholder="Enter Last Name"
+							    th:value="${user.lastName}"
+							    required>
+							    <div class="invalid-feedback">
+							    	Last Name Required
+							    </div>
+							 </div>
+							 
+							 <!-- User Name -->
+							 <div class="form-group">
+							    <label for="userName">User Name</label>
+							    <input type="text" 
+							    name="userName" 
+							    class="form-control " 
+							    th:classappend="${#fields.hasErrors('userName') ? 'is-invalid' : ''}" 
+							    id="userName" 
+							    th:field="*{userName}"
+							    placeholder="Enter User Name"
+							    th:value="${user.userName}"
+							    readonly>
+							    <div class="invalid-feedback">
+							    	User Name Required
+							    </div>
+							 </div>
+							 
+							 <!-- User Role -->
+							 <div class="form-group">
+							    <label for="role">User Role</label>
+							    <input type="text" 
+							    name="role" 
+							    class="form-control " 
+							    th:classappend="${#fields.hasErrors('role') ? 'is-invalid' : ''}" 
+							    id="role" 
+							    th:field="*{role}"
+							    placeholder="Enter User role"
+							    th:value="${user.role}"
+							    readonly>
+							    <div class="invalid-feedback">
+							    	User Role Required
+							    </div>
+							 </div>
+							 
+							 <!-- Password -->
+							 <div class="form-group">
+							    
+							    <input type="hidden" 
+							    name="password" 
+							    class="form-control " 
+							    th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}" 
+							    id="password" 
+							    th:field="*{password}"
+							    placeholder="Enter User password"
+							    th:value="${user.password}" 
+							    readonly>
+							    <div class="invalid-feedback">
+							    	User password Required
+							    </div>
+							 </div>
+
+							 
+							 <div class="container text-center">
+							 	<button type="submit" class="btn btn-success">Update</button>
+							 </div>
+							
+						</form>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

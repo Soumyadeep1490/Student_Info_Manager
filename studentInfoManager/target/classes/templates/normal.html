@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+	<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#">Student Information Manager</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link"><img style="width: 20px;" th:src="@{/img/user.png}"> <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:text="${user.userName}" style="font-weight: bold;">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/signin/}">Log out <span class="sr-only">(current)</span></a>
+	      </li>
+	      
+	    </ul>
+	    
+	  </div>
+	</nav>
+	<!-- Navbar ends -->
+	
+		
+	
+		<div class="container">
+			
+				<div class="col">
+					<div class="card">
+					  
+					  <div class="text-center">
+					  	<img style="width: 100px;" th:src="@{/img/user.png}">
+					  </div>
+					  
+					  <div class="card-body text-center">
+					    
+					   		<strong><h4>Welcome to Students' Page</h4></strong>
+							        
+							        <div style="padding:10px;"></div>
+							        
+							        <table class="table table-striped">
+									  <thead>
+									    <tr>
+									      <th scope="col">First Name</th>
+									      <td th:text="${currentUser.firstName}" />
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr>
+									      <th scope="row">Last Name</th>
+									      <td th:text="${currentUser.lastName}" />
+									    </tr>
+									    <tr>
+									      <th scope="row">ID</th>
+									      <td th:text="${currentUser.id}" />
+									    </tr>
+									    <tr>
+									      <th scope="row">Username</th>
+									      <td th:text="${currentUser.userName}" />
+									    </tr>
+									  </tbody>
+									</table>
+					   		
+					  </div>
+					</div>
+				</div>
+					
+		</div>
+    
+	</section>
+</body>
+</html>

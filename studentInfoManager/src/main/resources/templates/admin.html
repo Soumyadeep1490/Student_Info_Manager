@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+	<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#">Student Information Manager</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link"><img style="width: 20px;" th:src="@{/img/user.png}"> <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:text="${user.userName}" style="font-weight: bold;"> <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/signin/}">Log out <span class="sr-only">(current)</span></a>
+	      </li>
+	    </ul>
+	    
+	  </div>
+	</nav>
+	<!-- Navbar ends -->
+	
+	
+	
+		<div class="container">
+			
+				<div class="col">
+					<div class="card">
+					  
+					  <div class="text-center">
+					  	<img style="width: 100px;" th:src="@{/img/user.png}">
+					  </div>
+					  
+					  <div class="card-body text-center">
+					    
+					   		<strong><h4>Welcome to Admin Page</h4></strong>
+					   		
+					   		<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal1">
+							  View Profile
+							</button>
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal2">
+							  View All Users
+							</button>
+							
+							<!-- Modal 1 -->
+							<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header bg-primary">
+							        <h5 class="modal-title text-white" id="exampleModalLabel"><strong>Admin Proflie</strong></h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							        
+							        <table class="table table-striped">
+									  <thead>
+									    <tr>
+									      <th scope="col">First Name</th>
+									      <td th:text="${currentUser.firstName}" />
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr>
+									      <th scope="row">Last Name</th>
+									      <td th:text="${currentUser.lastName}" />
+									    </tr>
+									    <tr>
+									      <th scope="row">ID</th>
+									      <td th:text="${currentUser.id}" />
+									    </tr>
+									    <tr>
+									      <th scope="row">Username</th>
+									      <td th:text="${currentUser.userName}" />
+									    </tr>
+									  </tbody>
+									</table>
+							        
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							
+							<!-- Modal 2 -->
+							<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content" style="width:600px;">
+							      <div class="modal-header bg-primary">
+							        <h5 class="modal-title text-white" id="exampleModalLabel"><strong>All Registered Users</strong></h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							           <div class="container">
+							           		<table class="table table-striped">
+										  <thead>
+										    <tr>
+										      <th scope="col">First Name</th>
+										      <th scope="col">Last Name</th>
+										      <th scope="col">ID</th>
+										      <th scope="col">Username</th>
+										      <th scope="col">Role</th>
+										      <th scope="col">Edit</th>
+										      <th scope="col">Delete</th>
+										    </tr>
+										  </thead>
+										  <tbody>
+										    <tr th:each="user : ${users}">
+										      <td th:text="${user.firstName}" />
+										      <td th:text="${user.lastName}" />
+										      <td th:text="${user.id}" />
+										      <td th:text="${user.userName}" />
+										      <td th:text="${user.role}" />
+										      <td>
+										      	 <a th:href="@{/edit/{id}(id=${user.id})}">
+										      		<img style="width: 20px;" th:src="@{/img/rotation.png}">
+										      	 </a>		
+										      </td>
+										      <td>
+										      	 <a th:href="@{/delete/{id}(id=${user.id})}">
+										      		<img style="width: 20px;" th:src="@{/img/clear.png}">
+										      	 </a>		
+										      </td>
+										    </tr>
+										</table>
+							           </div>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+					   		
+					  </div>
+					</div>
+				</div>
+					
+		</div>
+    	
+	</section>
+</body>
+</html>
